@@ -1,145 +1,239 @@
-# 🕵️‍♂️ Fraud Detection Project
+# 💳 Financial Fraud Analysis using Machine Learning
 
-This repository contains a complete end-to-end **fraud detection** analysis using a synthetic transaction dataset. The goal is to identify fraudulent transactions through data exploration, preprocessing, visualization, and machine learning classification.
+> **End-to-end financial fraud analysis using exploratory data analysis, feature engineering, and machine learning to identify fraudulent financial transactions and generate actionable business insights.**
 
 ---
 
-## 📁 Repository Structure
+# 📖 Overview
+
+Financial fraud is a significant challenge for banks and digital payment platforms, leading to financial losses, operational risks, and reduced customer trust.
+
+This project presents an end-to-end machine learning workflow for analyzing financial transaction data, discovering fraud patterns through exploratory data analysis (EDA), and developing a predictive model capable of distinguishing fraudulent transactions from legitimate ones.
+
+The project demonstrates practical data science skills, including data preprocessing, visualization, feature engineering, class imbalance handling, machine learning, and model evaluation.
+
+---
+
+# 🎯 Project Objectives
+
+* Analyze historical financial transaction data.
+* Identify fraud trends using exploratory data analysis.
+* Perform data preprocessing and feature engineering.
+* Handle imbalanced classification problems.
+* Build a machine learning model for fraud detection.
+* Generate meaningful business insights from transaction data.
+
+---
+
+# 📊 Dataset Overview
+
+The dataset consists of synthetic financial transaction records containing customer information, merchant details, transaction metadata, and fraud labels.
+
+**Problem Type**
+
+* Binary Classification
+
+**Target Variable**
+
+* `is_fraud`
+
+Each transaction is labeled as:
+
+* **0** → Legitimate Transaction
+* **1** → Fraudulent Transaction
+
+---
+
+# 🔑 Dataset Features
+
+| Feature               | Description                 |
+| --------------------- | --------------------------- |
+| trans_date_trans_time | Transaction timestamp       |
+| cc_num                | Masked credit card number   |
+| merchant              | Merchant name               |
+| category              | Merchant category           |
+| amt                   | Transaction amount          |
+| first, last           | Customer name               |
+| gender                | Customer gender             |
+| city, state           | Customer location           |
+| lat, long             | Customer coordinates        |
+| merch_lat, merch_long | Merchant coordinates        |
+| city_pop              | Population of customer city |
+| job                   | Customer occupation         |
+| dob                   | Date of birth               |
+| trans_num             | Transaction ID              |
+| unix_time             | Unix timestamp              |
+| is_fraud              | Fraud Label                 |
+
+---
+
+# 🏗️ Project Workflow
 
 ```
-Fraud_Detection_Project/
-├── fraud_detection.ipynb             # Jupyter notebook with EDA & ML pipeline
-└── README.md                         # Project documentation
+Financial Transaction Dataset
+            │
+            ▼
+      Data Cleaning
+            │
+            ▼
+ Exploratory Data Analysis
+            │
+            ▼
+ Feature Engineering
+            │
+            ▼
+ Handling Class Imbalance
+            │
+            ▼
+ Machine Learning Model
+            │
+            ▼
+ Model Evaluation
+            │
+            ▼
+ Business Insights
 ```
 
 ---
 
-## 📦 Dataset Overview
-
-The dataset contains transaction records with 22 features and a binary label indicating fraud. Each row represents one transaction.
-
-## 🔑 Key Features
-
-| Feature              | Description                                               |
-|----------------------|-----------------------------------------------------------|
-| `trans_date_trans_time` | Date and time of the transaction                      |
-| `cc_num`             | Credit card number (masked)                               |
-| `merchant`           | Merchant name                                             |
-| `category`           | Merchant category                                         |
-| `amt`                | Transaction amount                                        |
-| `first`, `last`      | Cardholder’s first and last name                          |
-| `gender`             | Gender of the cardholder (`M` / `F`)                      |
-| `street`, `city`, `state`, `zip` | Cardholder’s address                        |
-| `lat`, `long`        | Latitude and Longitude of cardholder’s location           |
-| `city_pop`           | Population of the cardholder’s city                       |
-| `job`                | Cardholder’s job title                                    |
-| `dob`                | Date of birth                                             |
-| `trans_num`          | Unique transaction ID                                     |
-| `unix_time`          | Unix timestamp of the transaction                         |
-| `merch_lat`, `merch_long` | Merchant’s geographical coordinates              |
-| `is_fraud`           | Target column (`1`: Fraud, `0`: Not Fraud)                |
-
-
----
-
-## 🔍 Exploratory Data Analysis (EDA)
-
-Key insights obtained from EDA:
-
-- ✅ No null values in the dataset.
-- 📊 Imbalanced target: Majority of transactions are **not fraud**.
-- 👩‍🦰 Gender-based analysis: Female fraud rate higher in some regions.
-- 🌆 Fraud distribution by **state** and **city** highlighted key fraud-prone areas.
-- 💰 Fraud transactions mostly involve amounts > $200.
-- 📌 Visuals:
-  - Countplots of fraud by gender
-  - Fraud distribution by state
-  - Boxplots of amount vs. fraud
-  - Heatmaps for correlation analysis
-
----
-
-## 🧪 Preprocessing & Modeling
-
-- ✅ Dropped irrelevant features: `dob`, `trans_num`, `unix_time`, etc.
-- 🧼 Encoded categorical variables using `LabelEncoder` and `get_dummies`.
-- 📉 Handled **class imbalance** with `RandomUnderSampler`.
-- 🧠 Model used: **Random Forest Classifier**
-- ✅ Train-Test Split: 80-20
-- ⚙️ Evaluation Metrics: Accuracy, Precision, Recall, F1-score
-
----
-
-## 📈 Results Summary
+# 📁 Repository Structure
 
 ```
-   precision    recall  f1-score   support
+financial-fraud-analysis/
 
-           0       0.75      0.75      0.75         4
-           1       0.75      0.75      0.75         4
-
-    accuracy                           0.75         8
-   macro avg       0.75      0.75      0.75         8
-weighted avg       0.75      0.75      0.75         8
+├── data/
+│   └── fraudTest.csv
+│
+├── images/
+│   ├── fraud_count_by_gender.png
+│   ├── fraud_rate_by_gender.png
+│   ├── top10_cities_fraud.png
+│   └── top10_states_fraud.png
+│
+├── notebooks/
+│   └── financial_fraud_analysis.ipynb
+│
+├── requirements.txt
+├── .gitignore
+└── README.md
 ```
 
-> ⚠️ Note: The small test size (8 samples) limits generalizability. Cross-validation and hyperparameter tuning are recommended for better performance.
+---
+
+# 🔍 Exploratory Data Analysis
+
+The exploratory data analysis focuses on understanding fraud behavior across customer demographics, transaction characteristics, and geographic regions.
+
+Key analyses include:
+
+* Transaction distribution
+* Fraud class imbalance
+* Fraud count by gender
+* Fraud rate by gender
+* Top fraud-prone states
+* Top fraud-prone cities
+* Transaction amount analysis
+* Correlation analysis
 
 ---
 
-## 💡 Future Improvements
+# 📈 Key Findings
 
-- Apply **SMOTE** for synthetic oversampling.
-- Try **XGBoost** or **LightGBM** for better performance.
-- Deploy model with **Flask** or **Streamlit**.
-- Automate model training with ML pipelines.
-
----
-
-## 🧰 Tech Stack
-
-- Python 3.x
-- Pandas, NumPy, Matplotlib, Seaborn
-- Scikit-learn
-- imbalanced-learn (for under-sampling)
-- Jupyter Notebook
+* The dataset is highly imbalanced, with legitimate transactions significantly outnumbering fraudulent ones.
+* Fraudulent transactions exhibit distinct transaction amount patterns.
+* Fraud occurrence varies across geographic regions.
+* Certain cities and states experience comparatively higher fraud frequencies.
+* Customer demographic analysis reveals differences in fraud distribution across gender.
 
 ---
 
-## 📦 Installation
+# 🤖 Machine Learning Pipeline
+
+The predictive modeling workflow includes:
+
+* Data Cleaning
+* Feature Engineering
+* Categorical Encoding
+* Handling Class Imbalance
+* Train-Test Split
+* Random Forest Classification
+* Model Evaluation
+
+Future versions will compare multiple machine learning models including:
+
+* Logistic Regression
+* Decision Tree
+* Random Forest
+* XGBoost
+
+---
+
+# 🛠️ Tech Stack
+
+### Programming
+
+* Python
+
+### Data Analysis
+
+* Pandas
+* NumPy
+
+### Data Visualization
+
+* Matplotlib
+* Seaborn
+
+### Machine Learning
+
+* Scikit-learn
+* imbalanced-learn
+
+### Development Environment
+
+* Jupyter Notebook
+
+---
+
+# ⚙️ Installation
 
 ```bash
-# Clone the repo
-git clone https://github.com/ROCKYBH7/Fraud_Detection_Project.git
-cd Fraud_Detection_Project
+git clone https://github.com/ROCKYBH7/financial-fraud-analysis.git
 
-# Create virtual environment (optional but recommended)
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+cd financial-fraud-analysis
 
-# Install dependencies
 pip install -r requirements.txt
 
-# Run Jupyter Notebook
-jupyter notebook fraud_detection.ipynb
+jupyter notebook notebooks/financial_fraud_analysis.ipynb
 ```
----
-
-## 👤 Author
-
-**Balaji R H**  
-📧 balajirh.ds@gmail.com  
-🔗 LinkedIn: linkedin.com/in/balaji-r-h-a81107298  
-🐙 GitHub: github.com/ROCKYBH7  
 
 ---
 
-## 📝 License
+# 🚀 Future Improvements
 
-This project is licensed under the MIT License - feel free to use and adapt it.
+* Compare multiple machine learning models.
+* Apply SMOTE for oversampling.
+* Perform hyperparameter tuning.
+* Add ROC and Precision-Recall curves.
+* Deploy the trained model using FastAPI or Streamlit.
+* Build an interactive fraud analytics dashboard.
 
 ---
 
-## ⭐️ Show your support
+# 👨‍💻 Author
 
-If you found this project helpful, consider giving it a ⭐️ on GitHub!
+**Balaji R H**
+
+**AI Engineer | Machine Learning Engineer | Generative AI Developer**
+
+📧 [balajirh.ds@gmail.com](mailto:balajirh.ds@gmail.com)
+
+💼 LinkedIn: https://www.linkedin.com/in/balaji-r-h-a81107298
+
+🐙 GitHub: https://github.com/ROCKYBH7
+
+---
+
+# ⭐ Support
+
+If you found this project useful, consider giving it a ⭐ on GitHub.
